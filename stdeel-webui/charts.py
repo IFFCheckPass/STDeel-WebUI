@@ -80,10 +80,14 @@ def heatmap(df):
         fig = go.Figure()
         fig.update_layout(title='知识点掌握度热力图', **PLOTLY_LAYOUT)
         return fig
+    pivot = df.pivot_table(
+        index='username', columns='knowledge_point',
+        values='correct_rate', aggfunc='mean',
+    ).sort_index().sort_index(axis=1)
     fig = go.Figure(data=go.Heatmap(
-        z=df['correct_rate'].values.reshape(df['username'].nunique(), -1),
-        x=df['knowledge_point'].unique(),
-        y=df['username'].unique(),
+        z=pivot.values,
+        x=pivot.columns.tolist(),
+        y=pivot.index.tolist(),
         colorscale='RdYlGn',
         zmin=0, zmax=100,
     ))

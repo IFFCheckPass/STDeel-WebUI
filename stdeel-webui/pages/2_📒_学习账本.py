@@ -27,9 +27,11 @@ if all_users.empty:
 url_user_id = st.query_params.get("user_id", None)
 default_idx = 0
 if url_user_id:
-    match = all_users.index[all_users["id"].astype(str) == str(url_user_id)].tolist()
-    if match:
-        default_idx = match[0]
+    target = str(url_user_id)
+    for i, uid in enumerate(all_users["id"].astype(str)):
+        if uid == target:
+            default_idx = i
+            break
 
 selected_user = st.selectbox(
     "👤 选择用户",

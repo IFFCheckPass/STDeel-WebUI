@@ -1,6 +1,7 @@
 import json
 import streamlit as st
 import pandas as pd
+import plotly.express as px
 
 st.set_page_config(
     page_title="知识点统计 · STDeel",
@@ -95,7 +96,7 @@ if not answers_df.empty:
             {"knowledge_point": list(kp_counts.keys()),
              "count": list(kp_counts.values())}
         ).sort_values("count", ascending=False)
-        fig = __import__("plotly.express", fromlist=["bar"]).bar(
+        fig = px.bar(
             kp_count_df, x="knowledge_point", y="count",
             color_discrete_sequence=["#5b9fff"],
         )
