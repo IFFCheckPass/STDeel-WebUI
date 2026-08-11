@@ -1,0 +1,16 @@
+[server]
+port = 8501
+address = "127.0.0.1"
+maxUploadSize = 10
+headless = true
+
+[theme]
+base = "dark"
+primaryColor = "#5b9fff"
+backgroundColor = "#0f1117"
+secondaryBackgroundColor = "#1a1d27"
+textColor = "#e4e7ee"
+font = "sans serif"
+
+[layout]
+initialSidebarState = "expanded"
