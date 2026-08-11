@@ -1,9 +1,11 @@
 import sqlite3
 import pandas as pd
 from contextlib import contextmanager
+from pathlib import Path
 import os
 
-DB_PATH = os.environ.get('STDEEL_DB_PATH', '../stdeel-backend/app.db')
+_DEFAULT_DB = Path(__file__).resolve().parent.parent / "stdeel-backend" / "app.db"
+DB_PATH = os.environ.get('STDEEL_DB_PATH', str(_DEFAULT_DB))
 
 
 @contextmanager
